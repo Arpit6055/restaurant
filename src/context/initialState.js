@@ -1,3 +1,5 @@
+import {fetchUser} from "../utils/fetchLocalsorageData.js";
+
 export const initialState = {
-    user : null
+    user : fetchUser()
 }
