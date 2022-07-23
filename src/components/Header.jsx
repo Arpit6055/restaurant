@@ -28,17 +28,17 @@ const Header = () => {
       setisMenu(!isMenu);
     }
   };
-  const logout = ()=>{
+  const logout = () => {
     setisMenu(false);
     localStorage.clear();
     dispatch({
       type: actionType.SET_USER,
       user: null,
-    })
-  }
+    });
+  };
 
   return (
-    <header className="w-screen fixed z-50 p-3 px-4 md:p-6 md:px-16 bg-slate-100">
+    <header className="w-screen fixed z-50 p-3 px-2 md:p-6 md:px-10 bg-primary">
       {/* Desktop and tablet */}
       <div className="hidden md:flex w-full">
         <Link to={"/"} className="flex items-center gap-2">
@@ -48,7 +48,7 @@ const Header = () => {
             alt="Logo"
             className="w-10 object-cover"
           />
-          <p className="text-headingColor text-xl font-bold">City</p>
+          <p className="text-headingColor text-[2rem] font-extrabold">City</p>
         </Link>
         <div className="flex items-center ml-auto gap-8">
           <motion.ul
@@ -70,9 +70,9 @@ const Header = () => {
               Service
             </li>
           </motion.ul>
-          <div className="relative flex items-center justify-center">
-            <MdShoppingBasket className="text-textColor text-2xl ml-8 cursor-pointer" />
-            <div className="absolute -top-2 -right-3 w-6 h-6 rounded-full bg-red-600 flex justify-center items-center">
+          <div className="mx-0 px-0">
+            <MdShoppingBasket className="text-textColor text-2xl  cursor-pointer" />
+            <div className="absolute top-6 right-[6.5rem] w-6 h-6 rounded-full bg-red-500  flex justify-center items-center">
               <p className=" text-xs text-white flex items-center justify-center font-bold">
                 1
               </p>
@@ -100,7 +100,10 @@ const Header = () => {
                     </p>
                   </Link>
                 )}
-                <p onClick={logout} className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor ">
+                <p
+                  onClick={logout}
+                  className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor "
+                >
                   Logout <MdLogout></MdLogout>
                 </p>
               </motion.div>
@@ -111,6 +114,14 @@ const Header = () => {
 
       {/* Mobile */}
       <div className="flex md:hidden justify-between items-center w-full h-full">
+        <div className="mx-1 px-0 left-1">
+          <MdShoppingBasket className="text-textColor text-2xl  cursor-pointer" />
+          <div className="absolute top-3 left-5 w-6 h-6 rounded-full bg-red-600 flex justify-center items-center">
+            <p className=" text-xs text-white flex items-center justify-center font-bold">
+              1
+            </p>
+          </div>
+        </div>
         <Link to={"/"} className="flex items-center gap-2">
           <motion.img
             src={Logo}
@@ -120,20 +131,20 @@ const Header = () => {
           />
           <p className="text-headingColor text-xl font-bold">City</p>
         </Link>
-        <div className="relative rounded-lg">
+        <div className="relative rounded-lg right-2">
           <motion.img
             whileTap={{ scale: 0.6 }}
             onClick={login}
             src={user ? user.photoURL : Avatar}
-            className="w-10 min-w-[40px] min-h-[40px] drop-shadow-2xl cursor-pointer rounded-full"
+            className="w-10 min-w-[40px] min-h-[40px]  drop-shadow-2xl cursor-pointer rounded-full"
             alt="Profile"
           />
           {isMenu && (
             <motion.div
-              initial={{ opacity: 0.6, scale: 0.6 }}
+              initial={{ opacity: 0.6, scale: 0.6, rotate:360, animationTimeline:2 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0.6, scale: 0.6 }}
-              className="w-40 bg-gray-300 shadow-2xl rounded-lg flex flex-col absolute right-0 top-20"
+              className="w-40 bg-gray-300 shadow-2xl rounded-lg flex flex-col absolute right-2 my-5"
             >
               {user && user.email === process.env.REACT_APP_ADMIN_EMAIL && (
                 <Link to={"/createItem"}>
@@ -156,7 +167,10 @@ const Header = () => {
                   Service
                 </li>
               </ul>
-              <p onClick={logout} className="px-4 py-2 flex items-center gap-3 justify-center shadow-2xl cursor-pointer hover:bg-red-600 hover:text-white transition-all duration-100 ease-in-out text-textColor ">
+              <p
+                onClick={logout}
+                className="px-4 py-2 flex items-center gap-3 justify-center shadow-2xl cursor-pointer hover:bg-red-600 hover:text-white transition-all duration-100 ease-in-out text-textColor "
+              >
                 Logout <MdLogout></MdLogout>
               </p>
             </motion.div>
