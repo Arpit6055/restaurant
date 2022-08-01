@@ -1,7 +1,6 @@
 import React from "react";
 import Bike from "../img/delivery.png";
 import HeroBg from "../img/heroBg.png";
-import { motion } from "framer-motion";
 import { heroData } from "../utils/data";
 
 const HomeContainer = () => {
@@ -45,21 +44,34 @@ const HomeContainer = () => {
         </button>
       </div>
       <div className="py-2 flex-1 items-center relative">
-          <img
-            src={HeroBg}
-            className="ml-auto h-[580px] w-full lg:w-auto lg:h-[585px]"
-            alt="hero-bg"
-          />
-          <div className="w-full h-full absolute  top-0 left-0 flex items-center justify-center px-32 py-4 gap-5 flex-wrap overflow-y-hidden overflow-x-hidden">
-            {heroData && heroData.map(n=>(<div
-            key={n.id}
-            className="w-150 p-4 my-3 bg-cardLayout backdrop-blur-md rounded-md flex flex-col items-center hover:scale-105 transition-all ease-in-out duration-100 ">
-                <img src={n.img} className="w-35 -mt-20" alt="" />
+        <img
+          src={HeroBg}
+          className="ml-auto h-[580px] w-full lg:w-auto lg:h-[585px]"
+          alt="hero-bg"
+        />
+        <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center lg:px-[18%] px-5 md:px-[10%] py-8 gap-5 flex-wrap  overflow-x-hidden ">
+          {heroData &&
+            heroData.map((n) => (
+              <div
+                key={n.id}
+                className="lg:w-150 w-120 lg:p-4  sm:py-10 my-3 bg-cardLayout backdrop-blur-md rounded-md flex flex-col items-center hover:scale-105 transition-all ease-in-out duration-100 bg-opacity-5 "
+              >
+                <img
+                  src={n.img}
+                  className="lg:w-40 w-20 lg:-mt-20 -mt-10"
+                  alt=""
+                />
                 <p className="text-sm font-extrabold text-[72%]">{n.name}</p>
-                <p className="text-sm font-medium text-[72%] text-gray-500 my-1 text-center">{n.description}</p>
-                <p className="text-sm font-semibold"><span className="text- text-red-500">$</span>{n.price}</p>
-            </div>))}
-          </div>  
+                <p className="text-sm font-medium text-[72%] text-gray-500 my-1 text-center">
+                  {n.description}
+                </p>
+                <p className="text-sm font-semibold">
+                  <span className="text- text-red-500">$</span>
+                  {n.price}
+                </p>
+              </div>
+            ))}
+        </div>
       </div>
     </section>
   );
